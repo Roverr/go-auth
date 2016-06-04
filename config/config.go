@@ -25,7 +25,7 @@ type Config struct {
 	Port int32 `default:"8080"`
 
 	/* CI */
-	isCodeShip bool `default:"false" envconfig:"ci"`
+	IsCodeShip bool `default:"false" envconfig:"codeship"`
 }
 
 // Export Config for singleton purposes after the
@@ -44,7 +44,7 @@ func InitConfig() Config {
 		fmt.Println("Error happened while loading enviroment variables for config!")
 		log.Fatal(err)
 	}
-	if Conf.isCodeShip {
+	if Conf.IsCodeShip {
 		Conf.DbName = "test"
 		Conf.DbUser = os.Getenv("MYSQL_USER")
 		Conf.DbPass = os.Getenv("MYSQL_PASSWORD")
