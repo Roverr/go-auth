@@ -2,7 +2,7 @@ package auth_test
 
 import (
 	"fmt"
-	"go-auth/core"
+	"go-auth/utilities/test"
 	"net/http/httptest"
 	"os"
 	"testing"
@@ -16,8 +16,8 @@ var (
 )
 
 func TestMain(m *testing.M) {
-	router := routing.Init()
-	server = httptest.NewServer(router)
+	testRestServer := testUtils.StartServer()
+	server = testRestServer.Server
 	loginURL = fmt.Sprintf("%s/auth/login", server.URL)
 	registerURL = fmt.Sprintf("%s/auth/register", server.URL)
 	logoutURL = fmt.Sprintf("%s/auth/logout", server.URL)
