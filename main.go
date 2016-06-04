@@ -2,14 +2,21 @@ package main
 
 import (
 	"fmt"
+	"go-auth/config"
 	"go-auth/core"
+	"go-auth/database"
 	"log"
 	"net/http"
 )
 
 func main() {
-	fmt.Printf("Server starting and listening on %d\n", 8080)
 	router := routing.Init()
-	fmt.Printf("Routes initialized!\n")
-	log.Fatal(http.ListenAndServe(":8080", router))
+	config := configuration.InitConfig()
+	fmt.Printf("Server starting and listening on %d\n", config.Port)
+	dbConn := db.CreateDbConnection()
+	fmt.Println("Database connection initialized")
+	db.InitalizeModels(dbConn)
+	fmt.Println("Models synchronized into database")
+	portString := fmt.Sprintf(":%d", config.Port)
+	log.Fatal(http.ListenAndServe(portString, router))
 }
