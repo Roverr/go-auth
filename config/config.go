@@ -3,6 +3,7 @@ package configuration
 import (
 	"fmt"
 	"log"
+	"os"
 
 	"github.com/kelseyhightower/envconfig"
 )
@@ -14,7 +15,7 @@ type Config struct {
 	/* DB */
 	DbName string `default:"go-auth" envconfig:"db_name"`
 	DbUser string `default:"root" envconfig:"db_user"`
-	DbPass string `required:"true" envconfig:"db_pass"`
+	DbPass string `default:"macilaci" envconfig:"db_pass"`
 	DbHost string `default:"localhost" envconfig:"db_host"`
 	// Have to use 32 bit since 16 bit is not enough
 	// if the port is greater than 65535
@@ -22,6 +23,9 @@ type Config struct {
 
 	/* Server */
 	Port int32 `default:"8080"`
+
+	/* CI */
+	isCodeShip bool `default:"false" envconfig:"ci"`
 }
 
 // Export Config for singleton purposes after the
@@ -39,6 +43,11 @@ func InitConfig() Config {
 	if err != nil {
 		fmt.Println("Error happened while loading enviroment variables for config!")
 		log.Fatal(err)
+	}
+	if Conf.isCodeShip {
+		Conf.DbName = "test"
+		Conf.DbUser = os.Getenv("MYSQL_USER")
+		Conf.DbPass = os.Getenv("MYSQL_PASSWORD")
 	}
 	return Conf
 }
