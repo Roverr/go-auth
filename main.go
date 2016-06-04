@@ -10,13 +10,11 @@ import (
 )
 
 func main() {
-	router := routing.Init()
 	config := configuration.InitConfig()
-	fmt.Printf("Server starting and listening on %d\n", config.Port)
 	dbConn := db.CreateDbConnection()
-	fmt.Println("Database connection initialized")
 	db.InitalizeModels(dbConn)
-	fmt.Println("Models synchronized into database")
+	router := routing.Init()
 	portString := fmt.Sprintf(":%d", config.Port)
+	fmt.Printf("Server starting and listening on %d\n", config.Port)
 	log.Fatal(http.ListenAndServe(portString, router))
 }
