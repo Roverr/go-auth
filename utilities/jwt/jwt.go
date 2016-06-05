@@ -2,8 +2,8 @@ package jwtUtils
 
 import (
 	"errors"
-	"go-auth/auth/types"
 	"go-auth/config"
+	"go-auth/core/auth/types"
 	"time"
 
 	"github.com/dgrijalva/jwt-go"

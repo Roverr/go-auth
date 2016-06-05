@@ -3,8 +3,8 @@ package auth_test
 import (
 	"bytes"
 	"encoding/json"
-	"go-auth/auth/types"
 	"go-auth/config"
+	"go-auth/core/auth/types"
 	"go-auth/utilities/security"
 	"go-auth/utilities/test"
 	"net/http"

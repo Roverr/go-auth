@@ -1,7 +1,7 @@
 package routing
 
 import (
-	"go-auth/auth"
+	"go-auth/core/auth"
 
 	"github.com/julienschmidt/httprouter"
 )
