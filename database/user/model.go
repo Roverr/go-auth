@@ -9,5 +9,5 @@ type User struct {
 	RealName     string
 	Salt         string
 	PasswordHash string
-	UserName     string
+	UserName     string `gorm:"unique_index"`
 }
