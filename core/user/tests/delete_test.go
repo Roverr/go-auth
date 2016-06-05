@@ -9,6 +9,7 @@ import (
 	"testing"
 )
 
+// Should not be able to call this endpoint without login
 func TestDeleteWithoutToken(t *testing.T) {
 	request, reqError := http.NewRequest("DELETE", deleteURL, nil)
 
@@ -27,6 +28,7 @@ func TestDeleteWithoutToken(t *testing.T) {
 	}
 }
 
+// Should be able to delete own user after login
 func TestDeleteWithValidToken(t *testing.T) {
 	user := testUtils.CreateLoggedInUser()
 	request, reqError := http.NewRequest("DELETE", deleteURL, nil)

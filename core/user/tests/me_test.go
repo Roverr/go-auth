@@ -11,6 +11,7 @@ import (
 	"testing"
 )
 
+// This endpoint should be unreachable without login
 func TestMeWithoutToken(t *testing.T) {
 	request, reqError := http.NewRequest("GET", meURL, nil)
 
@@ -29,6 +30,7 @@ func TestMeWithoutToken(t *testing.T) {
 	}
 }
 
+// Logged in users should be able to get information from this endpoint
 func TestMeWithValidToken(t *testing.T) {
 	user := testUtils.CreateLoggedInUser()
 	request, reqError := http.NewRequest("GET", meURL, nil)
@@ -73,8 +75,8 @@ func TestMeWithValidToken(t *testing.T) {
 	}
 }
 
+// Deleted users should not be able to use their valid token
 func TestMeWithValidTokenAndDeletedUser(t *testing.T) {
-	// Deleted users should not be able to use their valid token
 	user := testUtils.CreateLoggedInUser()
 	db.Db.Delete(&user.User)
 	request, reqError := http.NewRequest("GET", meURL, nil)

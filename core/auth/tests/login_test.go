@@ -12,6 +12,7 @@ import (
 	"testing"
 )
 
+// Login request without body should be invalid
 func TestLoginWihoutBody(t *testing.T) {
 	request, reqError := http.NewRequest("POST", loginURL, nil)
 
@@ -29,6 +30,7 @@ func TestLoginWihoutBody(t *testing.T) {
 	}
 }
 
+// Not registered users should not be able to login
 func TestLoginWithoutRegisteredUser(t *testing.T) {
 	password, pErr := security.GenerateRandomString(5)
 	if pErr != nil {
@@ -62,6 +64,7 @@ func TestLoginWithoutRegisteredUser(t *testing.T) {
 	}
 }
 
+// Registered users should be able to login
 func TestLoginWithValidRegisteredUser(t *testing.T) {
 	createdUser := testUtils.CreateUser()
 	body := authTypes.RegisterRequest{
@@ -91,8 +94,8 @@ func TestLoginWithValidRegisteredUser(t *testing.T) {
 	}
 }
 
+// Deleted users should not be able to login
 func TestLoginWithDeletedUser(t *testing.T) {
-	// Deleted users should not be able to login
 	createdUser := testUtils.CreateUser()
 	db.Db.Delete(&createdUser.User)
 	body := authTypes.RegisterRequest{

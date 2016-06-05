@@ -11,6 +11,7 @@ import (
 	"testing"
 )
 
+// Should not be able to complete registration without request body
 func TestRegisterWithoutBody(t *testing.T) {
 	request, reqError := http.NewRequest("POST", registerURL, nil)
 
@@ -29,6 +30,8 @@ func TestRegisterWithoutBody(t *testing.T) {
 	}
 }
 
+// Should not be able to complete registration without valid data in
+// request body
 func TestRegisterWithInvalidBody(t *testing.T) {
 	realName, rErr := security.GenerateRandomString(5)
 	if rErr != nil {
@@ -63,7 +66,8 @@ func TestRegisterWithInvalidBody(t *testing.T) {
 	}
 }
 
-func TestRegister(t *testing.T) {
+// Should be able to complete registration with valid request body
+func TestRegisterWithValidData(t *testing.T) {
 	realName, rErr := security.GenerateRandomString(5)
 	if rErr != nil {
 		t.Error(rErr)
@@ -96,7 +100,6 @@ func TestRegister(t *testing.T) {
 	if resError != nil {
 		t.Error(resError)
 	}
-	// Register with invalid body should be a bad request
 	if res.StatusCode != 200 {
 		t.Errorf("Response should have been 200.")
 	}
