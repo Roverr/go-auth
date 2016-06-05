@@ -3,8 +3,8 @@ package auth
 import (
 	"encoding/json"
 	"errors"
-	"go-auth/auth/types"
 	"go-auth/config"
+	"go-auth/core/auth/types"
 	"go-auth/database"
 	"go-auth/database/user"
 	"go-auth/utilities/jwt"

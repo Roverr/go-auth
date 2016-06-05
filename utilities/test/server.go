@@ -5,8 +5,6 @@ import (
 	"go-auth/core"
 	"go-auth/database"
 	"net/http/httptest"
-
-	"github.com/jinzhu/gorm"
 )
 
 // ServerTest struct is used to describe
@@ -14,7 +12,15 @@ import (
 type ServerTest struct {
 	Config configuration.Config
 	Server *httptest.Server
-	Db     *gorm.DB
+}
+
+// Set some variables in config if
+// the tests are running locally
+func setLocalTestEnviroment() {
+	if configuration.Conf.IsCodeShip {
+		return
+	}
+	configuration.Conf.DbName = "go-auth-test"
 }
 
 // StartServer is a test utility function
@@ -22,13 +28,15 @@ type ServerTest struct {
 // database connection
 func StartServer() ServerTest {
 	config := configuration.InitConfig()
-	dbConn := db.CreateDbConnection()
-	db.InitalizeModels(dbConn)
+	setLocalTestEnviroment()
+	if !db.IsConnected {
+		db.CreateDbConnection()
+		db.InitalizeModels()
+	}
 	router := routing.Init()
 	server := httptest.NewServer(router)
 	return ServerTest{
 		Config: config,
 		Server: server,
-		Db:     dbConn,
 	}
 }

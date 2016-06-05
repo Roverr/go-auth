@@ -1,5 +1,7 @@
 package authTypes
 
+import "time"
+
 // RegisterRequest describes how should
 // the request body look like for the
 // registration endpoint
@@ -15,4 +17,5 @@ type RegisterRequest struct {
 type ParsedToken struct {
 	ID       uint
 	UserName string
+	Exp      time.Time
 }
