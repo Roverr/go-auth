@@ -3,6 +3,7 @@ package auth
 import (
 	"encoding/json"
 	"errors"
+	"go-auth/auth/types"
 	"go-auth/database"
 	"go-auth/database/user"
 	"go-auth/utilities/password"
@@ -16,13 +17,7 @@ import (
 	_ "github.com/go-sql-driver/mysql"
 )
 
-type requestProperties struct {
-	RealName string `json:"realName"`
-	UserName string `json:"userName"`
-	Password string `json:"password"`
-}
-
-func validateRequest(request requestProperties) error {
+func validateRequest(request authTypes.RegisterRequest) error {
 	if request.UserName == "" || request.Password == "" {
 		return errors.New("Request body did not contain userName or password.")
 	}
@@ -31,7 +26,7 @@ func validateRequest(request requestProperties) error {
 
 // RegisterHandler is the handler function of the register endpoint
 func RegisterHandler(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
-	var userInformation requestProperties
+	var userInformation authTypes.RegisterRequest
 	body, err := ioutil.ReadAll(r.Body)
 	if err != nil {
 		res.FinalizeError(w, err, http.StatusInternalServerError)
@@ -39,7 +34,7 @@ func RegisterHandler(w http.ResponseWriter, r *http.Request, ps httprouter.Param
 	}
 	err = json.Unmarshal(body, &userInformation)
 	if err != nil {
-		res.FinalizeError(w, err, http.StatusInternalServerError)
+		res.FinalizeError(w, err, http.StatusBadRequest)
 		return
 	}
 	err = validateRequest(userInformation)
