@@ -22,7 +22,9 @@ type Config struct {
 	DbPort int32 `default:"3306" envconfig:"db_port"`
 
 	/* Server */
-	Port int32 `default:"8080"`
+	Port      int32  `default:"8080"`
+	JwtSecret string `default:"macilaci" envconfig:"jwt_secret"`
+	JwtHeader string `default:"X-Goauth" envconfig:"jwt_header"`
 
 	/* CI */
 	IsCodeShip bool `default:"false" envconfig:"codeship"`

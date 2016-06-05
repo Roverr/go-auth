@@ -6,8 +6,9 @@ import (
 	"go-auth/auth/types"
 	"go-auth/database"
 	"go-auth/database/user"
-	"go-auth/utilities/password"
 	"go-auth/utilities/response"
+	"go-auth/utilities/security"
+	"go-auth/utilities/validate"
 	"io/ioutil"
 	"net/http"
 	"strings"
@@ -16,13 +17,6 @@ import (
 	// fasz
 	_ "github.com/go-sql-driver/mysql"
 )
-
-func validateRequest(request authTypes.RegisterRequest) error {
-	if request.UserName == "" || request.Password == "" {
-		return errors.New("Request body did not contain userName or password.")
-	}
-	return nil
-}
 
 // RegisterHandler is the handler function of the register endpoint
 func RegisterHandler(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
@@ -37,7 +31,7 @@ func RegisterHandler(w http.ResponseWriter, r *http.Request, ps httprouter.Param
 		res.FinalizeError(w, err, http.StatusBadRequest)
 		return
 	}
-	err = validateRequest(userInformation)
+	err = requestValidate.UsernamePassword(userInformation)
 	if err != nil {
 		res.FinalizeError(w, err, http.StatusBadRequest)
 		return

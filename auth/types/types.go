@@ -8,3 +8,11 @@ type RegisterRequest struct {
 	UserName string `json:"userName"`
 	Password string `json:"password"`
 }
+
+// ParsedToken is used to describe the JWT token
+// information which is parsed before accessing endpoints
+// which need authentication first
+type ParsedToken struct {
+	ID       uint
+	UserName string
+}
