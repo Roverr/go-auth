@@ -7,6 +7,7 @@ import (
 	"go-auth/database"
 	"go-auth/database/user"
 	"go-auth/utilities/security"
+	"go-auth/utilities/test"
 	"net/http"
 	"testing"
 )
@@ -64,6 +65,7 @@ func TestRegisterWithInvalidBody(t *testing.T) {
 }
 
 func TestRegister(t *testing.T) {
+	testUtils.DropDb()
 	realName, rErr := security.GenerateRandomString(5)
 	if rErr != nil {
 		t.Error(rErr)

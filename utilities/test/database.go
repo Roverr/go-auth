@@ -9,8 +9,10 @@ import (
 // It is used to clean database before tests.
 func DropDb() {
 	var err error
-	err = db.Db.DropTable(&dbModels.User{}).Error
+	err = db.Db.DropTableIfExists(&dbModels.User{}).Error
 	CallFatalIfError(err)
-	err = db.InitalizeModels(db.Db)
-	CallFatalIfError(err)
+	if !db.Db.HasTable(&dbModels.User{}) {
+		err = db.InitalizeModels(db.Db)
+		CallFatalIfError(err)
+	}
 }
