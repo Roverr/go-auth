@@ -5,12 +5,14 @@ import (
 	"encoding/json"
 	"go-auth/config"
 	"go-auth/core/auth/types"
+	"go-auth/database"
 	"go-auth/utilities/security"
 	"go-auth/utilities/test"
 	"net/http"
 	"testing"
 )
 
+// Login request without body should be invalid
 func TestLoginWihoutBody(t *testing.T) {
 	request, reqError := http.NewRequest("POST", loginURL, nil)
 
@@ -28,6 +30,7 @@ func TestLoginWihoutBody(t *testing.T) {
 	}
 }
 
+// Not registered users should not be able to login
 func TestLoginWithoutRegisteredUser(t *testing.T) {
 	password, pErr := security.GenerateRandomString(5)
 	if pErr != nil {
@@ -61,8 +64,8 @@ func TestLoginWithoutRegisteredUser(t *testing.T) {
 	}
 }
 
+// Registered users should be able to login
 func TestLoginWithValidRegisteredUser(t *testing.T) {
-	testUtils.DropDb()
 	createdUser := testUtils.CreateUser()
 	body := authTypes.RegisterRequest{
 		UserName: createdUser.User.UserName,
@@ -88,5 +91,32 @@ func TestLoginWithValidRegisteredUser(t *testing.T) {
 	jwtToken := res.Header.Get(configuration.Conf.JwtHeader)
 	if jwtToken == "" {
 		t.Errorf("JWT Token should be valid after login.")
+	}
+}
+
+// Deleted users should not be able to login
+func TestLoginWithDeletedUser(t *testing.T) {
+	createdUser := testUtils.CreateUser()
+	db.Db.Delete(&createdUser.User)
+	body := authTypes.RegisterRequest{
+		UserName: createdUser.User.UserName,
+		Password: createdUser.Password,
+	}
+	js, jErr := json.Marshal(body)
+	if jErr != nil {
+		t.Error(jErr)
+	}
+	request, reqError := http.NewRequest("POST", loginURL, bytes.NewBuffer(js))
+	request.Header.Set("Content-Type", "application/json")
+	if reqError != nil {
+		t.Error(reqError)
+	}
+
+	res, resError := http.DefaultClient.Do(request)
+	if resError != nil {
+		t.Error(resError)
+	}
+	if res.StatusCode != 404 {
+		t.Errorf("Response should have been 404.")
 	}
 }
