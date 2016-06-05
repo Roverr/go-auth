@@ -11,9 +11,15 @@ import (
 	"github.com/jinzhu/gorm"
 )
 
+// Conn is the exported singleton database connection
+var (
+	Db *gorm.DB
+)
+
 // CreateDbConnection will be able to create connection
 // to the SQLite database
 func CreateDbConnection() *gorm.DB {
+	var err error
 	config := configuration.Conf
 	connString := fmt.Sprintf("%s:%s@tcp(%s:%d)/%s?charset=utf8&parseTime=True&loc=Local",
 		config.DbUser,
@@ -22,13 +28,13 @@ func CreateDbConnection() *gorm.DB {
 		config.DbPort,
 		config.DbName,
 	)
-	db, err := gorm.Open("mysql", connString)
+	Db, err = gorm.Open("mysql", connString)
 	if err != nil {
 		fmt.Println("Error happened during opening connection with database")
 		log.Fatal(err)
 	}
 
-	return db
+	return Db
 }
 
 // InitalizeModels is synchronizing the models

@@ -11,6 +11,5 @@ func Init() *httprouter.Router {
 	router := httprouter.New()
 	router.POST("/auth/login", auth.LoginHandler)
 	router.POST("/auth/register", auth.RegisterHandler)
-	router.POST("/auth/logout", auth.LogoutHandler)
 	return router
 }
