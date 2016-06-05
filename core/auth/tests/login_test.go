@@ -62,7 +62,6 @@ func TestLoginWithoutRegisteredUser(t *testing.T) {
 }
 
 func TestLoginWithValidRegisteredUser(t *testing.T) {
-	testUtils.DropDb()
 	createdUser := testUtils.CreateUser()
 	body := authTypes.RegisterRequest{
 		UserName: createdUser.User.UserName,

@@ -29,7 +29,6 @@ func TestMeWithoutToken(t *testing.T) {
 }
 
 func TestMeWithValidToken(t *testing.T) {
-	testUtils.DropDb()
 	user := testUtils.CreateLoggedInUser()
 	request, reqError := http.NewRequest("GET", meURL, nil)
 	request.Header.Set("Content-Type", "application/json")
