@@ -39,6 +39,7 @@ func CreateDbConnection() *gorm.DB {
 
 // InitalizeModels is synchronizing the models
 // into the database
-func InitalizeModels(db *gorm.DB) {
-	db.AutoMigrate(&dbModels.User{})
+func InitalizeModels(db *gorm.DB) error {
+	err := db.AutoMigrate(&dbModels.User{}).Error
+	return err
 }

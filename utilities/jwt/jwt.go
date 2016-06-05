@@ -16,7 +16,7 @@ func CreateToken(id uint, userName string) (string, error) {
 	token.Claims["id"] = id
 	token.Claims["userName"] = userName
 	expTime := time.Minute * time.Duration(configuration.Conf.JwtExpTime)
-	token.Claims["exp"] = time.Now().Add(expTime).Unix()
+	token.Claims["exp"] = time.Now().Add(expTime)
 	// tokenString gets []byte because of the HS512 alg
 	tokenString, err := token.SignedString([]byte(configuration.Conf.JwtSecret))
 	if err != nil {
@@ -41,9 +41,14 @@ func ValidateToken(tokenString string) (authTypes.ParsedToken, error) {
 	if err != nil {
 		return authTypes.ParsedToken{}, err
 	}
+	exp, pErr := time.Parse(time.RFC3339, token.Claims["exp"].(string))
+	if pErr != nil {
+		return authTypes.ParsedToken{}, pErr
+	}
 	parsedToken := authTypes.ParsedToken{
 		UserName: token.Claims["userName"].(string),
-		ID:       token.Claims["id"].(uint),
+		ID:       uint(token.Claims["id"].(float64)),
+		Exp:      exp,
 	}
 	return parsedToken, nil
 }
