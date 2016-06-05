@@ -3,7 +3,7 @@ package auth
 import (
 	"encoding/json"
 	"errors"
-	"go-auth/auth/types"
+	"go-auth/core/auth/types"
 	"go-auth/database"
 	"go-auth/database/user"
 	"go-auth/utilities/response"
@@ -14,8 +14,6 @@ import (
 	"strings"
 
 	"github.com/julienschmidt/httprouter"
-	// fasz
-	_ "github.com/go-sql-driver/mysql"
 )
 
 // RegisterHandler is the handler function of the register endpoint

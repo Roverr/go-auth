@@ -2,7 +2,7 @@ package requestValidate
 
 import (
 	"errors"
-	"go-auth/auth/types"
+	"go-auth/core/auth/types"
 )
 
 // UsernamePassword is function for validating request body

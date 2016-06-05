@@ -3,8 +3,8 @@ package auth_test
 import (
 	"bytes"
 	"encoding/json"
-	"go-auth/auth/types"
 	"go-auth/config"
+	"go-auth/core/auth/types"
 	"go-auth/utilities/security"
 	"go-auth/utilities/test"
 	"net/http"
@@ -62,6 +62,7 @@ func TestLoginWithoutRegisteredUser(t *testing.T) {
 }
 
 func TestLoginWithValidRegisteredUser(t *testing.T) {
+	testUtils.DropDb()
 	createdUser := testUtils.CreateUser()
 	body := authTypes.RegisterRequest{
 		UserName: createdUser.User.UserName,

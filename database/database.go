@@ -13,7 +13,8 @@ import (
 
 // Conn is the exported singleton database connection
 var (
-	Db *gorm.DB
+	Db          *gorm.DB
+	IsConnected = false
 )
 
 // CreateDbConnection will be able to create connection
@@ -33,12 +34,13 @@ func CreateDbConnection() *gorm.DB {
 		fmt.Println("Error happened during opening connection with database")
 		log.Fatal(err)
 	}
-
+	IsConnected = true
 	return Db
 }
 
 // InitalizeModels is synchronizing the models
 // into the database
-func InitalizeModels(db *gorm.DB) {
-	db.AutoMigrate(&dbModels.User{})
+func InitalizeModels() error {
+	err := Db.AutoMigrate(&dbModels.User{}).Error
+	return err
 }

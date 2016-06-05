@@ -3,15 +3,9 @@ package testUtils
 import (
 	"go-auth/database"
 	"go-auth/database/user"
+	"go-auth/utilities/jwt"
 	"go-auth/utilities/security"
-	"log"
 )
-
-func callFatalIfError(err error) {
-	if err != nil {
-		log.Fatal(err)
-	}
-}
 
 // CreateUser is a function for creating a random
 // user to the database
@@ -21,19 +15,30 @@ func CreateUser() CreatedUser {
 	var password string
 	var hash security.PasswordHash
 	user.RealName, err = security.GenerateRandomString(5)
-	callFatalIfError(err)
+	CallFatalIfError(err)
 	user.UserName, err = security.GenerateRandomString(5)
-	callFatalIfError(err)
+	CallFatalIfError(err)
 	password, err = security.GenerateRandomString(5)
-	callFatalIfError(err)
+	CallFatalIfError(err)
 	hash, err = security.GeneratePassword(password)
-	callFatalIfError(err)
+	CallFatalIfError(err)
 	user.PasswordHash = hash.Hash
 	user.Salt = hash.Salt
 	dbErr := db.Db.Create(&user).Error
-	callFatalIfError(dbErr)
+	CallFatalIfError(dbErr)
 	return CreatedUser{
 		User:     user,
 		Password: password,
 	}
+}
+
+// CreateLoggedInUser is the same as CreateUser
+// except that it also adds a valid token to the
+// return value which can be used to make API calls
+func CreateLoggedInUser() CreatedUser {
+	var err error
+	user := CreateUser()
+	user.Token, err = jwtUtils.CreateToken(user.User.ID, user.User.UserName)
+	CallFatalIfError(err)
+	return user
 }
