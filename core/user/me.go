@@ -1,6 +1,7 @@
 package user
 
 import (
+	"go-auth/config"
 	"go-auth/core/user/types"
 	"go-auth/database/user"
 	"go-auth/utilities/response"
@@ -18,5 +19,7 @@ func Me(w http.ResponseWriter, r *http.Request, ps httprouter.Params, user dbMod
 		RealName: user.RealName,
 		ID:       user.ID,
 	}
+	token := r.Header.Get(configuration.Conf.JwtHeader)
+	w.Header().Set(configuration.Conf.JwtHeader, token)
 	res.Finalize(w, clientObject)
 }
