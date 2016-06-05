@@ -13,5 +13,6 @@ func Init() *httprouter.Router {
 	router.POST("/auth/login", auth.LoginHandler)
 	router.POST("/auth/register", auth.RegisterHandler)
 	router.GET("/user/me", JwtCheck(user.Me))
+	router.DELETE("/user/delete", JwtCheck(user.Delete))
 	return router
 }

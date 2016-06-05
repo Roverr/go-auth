@@ -4,12 +4,14 @@ import (
 	"encoding/json"
 	"go-auth/config"
 	"go-auth/core/user/types"
+	"go-auth/database"
 	"go-auth/utilities/test"
 	"io/ioutil"
 	"net/http"
 	"testing"
 )
 
+// This endpoint should be unreachable without login
 func TestMeWithoutToken(t *testing.T) {
 	request, reqError := http.NewRequest("GET", meURL, nil)
 
@@ -28,8 +30,8 @@ func TestMeWithoutToken(t *testing.T) {
 	}
 }
 
+// Logged in users should be able to get information from this endpoint
 func TestMeWithValidToken(t *testing.T) {
-	testUtils.DropDb()
 	user := testUtils.CreateLoggedInUser()
 	request, reqError := http.NewRequest("GET", meURL, nil)
 	request.Header.Set("Content-Type", "application/json")
@@ -70,5 +72,25 @@ func TestMeWithValidToken(t *testing.T) {
 	}
 	if resBody.Data.Item.UserName != user.User.UserName {
 		t.Errorf("User UserName is not matching.")
+	}
+}
+
+// Deleted users should not be able to use their valid token
+func TestMeWithValidTokenAndDeletedUser(t *testing.T) {
+	user := testUtils.CreateLoggedInUser()
+	db.Db.Delete(&user.User)
+	request, reqError := http.NewRequest("GET", meURL, nil)
+	request.Header.Set("Content-Type", "application/json")
+	request.Header.Set(configuration.Conf.JwtHeader, user.Token)
+	if reqError != nil {
+		t.Error(reqError)
+	}
+
+	res, resError := http.DefaultClient.Do(request)
+	if resError != nil {
+		t.Error(resError)
+	}
+	if res.StatusCode != 403 {
+		t.Errorf("Response should have been 403.")
 	}
 }
