@@ -29,6 +29,7 @@ func CreateDbConnection() *gorm.DB {
 		config.DbPort,
 		config.DbName,
 	)
+
 	Db, err = gorm.Open("mysql", connString)
 	if err != nil {
 		fmt.Println("Error happened during opening connection with database")

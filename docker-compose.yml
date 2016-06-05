@@ -1,0 +1,22 @@
+version: '2'
+services:
+  application:
+    depends_on:
+      - database
+    build: ./
+    ports:
+      - "8080:8080"
+    links:
+      - database
+    environment:
+      GOAUTH_DB_HOST: database
+  database:
+    image: mysql
+    restart: always
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: macilaci
+      MYSQL_DATABASE: go-auth
+      MYSQL_USER: root
+      MYSQL_PASSWORD: macilaci

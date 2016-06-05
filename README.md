@@ -8,3 +8,5 @@ go test ./...
 ```
 If you would like to see the tests one by one, you should add -v
 flag to the end of the command.
+
+Wait for it script is provided by https://github.com/vishnubob/wait-for-it
