@@ -11,8 +11,8 @@ import (
 
 func main() {
 	config := configuration.InitConfig()
-	dbConn := db.CreateDbConnection()
-	dbErr := db.InitalizeModels(dbConn)
+	db.CreateDbConnection()
+	dbErr := db.InitalizeModels()
 	if dbErr != nil {
 		log.Fatal(dbErr)
 	}

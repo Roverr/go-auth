@@ -12,7 +12,7 @@ func DropDb() {
 	err = db.Db.DropTableIfExists(&dbModels.User{}).Error
 	CallFatalIfError(err)
 	if !db.Db.HasTable(&dbModels.User{}) {
-		err = db.InitalizeModels(db.Db)
+		err = db.InitalizeModels()
 		CallFatalIfError(err)
 	}
 }
