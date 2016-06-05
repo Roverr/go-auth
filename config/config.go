@@ -22,9 +22,10 @@ type Config struct {
 	DbPort int32 `default:"3306" envconfig:"db_port"`
 
 	/* Server */
-	Port      int32  `default:"8080"`
-	JwtSecret string `default:"macilaci" envconfig:"jwt_secret"`
-	JwtHeader string `default:"X-Goauth" envconfig:"jwt_header"`
+	Port       int32  `default:"8080"`
+	JwtSecret  string `default:"macilaci" envconfig:"jwt_secret"`
+	JwtHeader  string `default:"X-Goauth" envconfig:"jwt_header"`
+	JwtExpTime int    `default:"1440"` // 24 hours in minutes
 
 	/* CI */
 	IsCodeShip bool `default:"false" envconfig:"codeship"`

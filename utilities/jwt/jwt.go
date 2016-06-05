@@ -15,7 +15,8 @@ func CreateToken(id uint, userName string) (string, error) {
 	token := jwt.New(jwt.SigningMethodHS512)
 	token.Claims["id"] = id
 	token.Claims["userName"] = userName
-	token.Claims["exp"] = time.Now().Add(time.Hour * 24).Unix()
+	expTime := time.Minute * time.Duration(configuration.Conf.JwtExpTime)
+	token.Claims["exp"] = time.Now().Add(expTime).Unix()
 	// tokenString gets []byte because of the HS512 alg
 	tokenString, err := token.SignedString([]byte(configuration.Conf.JwtSecret))
 	if err != nil {

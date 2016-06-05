@@ -6,7 +6,7 @@ import (
 	"go-auth/auth/types"
 	"go-auth/database"
 	"go-auth/database/user"
-	"go-auth/utilities/password"
+	"go-auth/utilities/security"
 	"net/http"
 	"testing"
 )

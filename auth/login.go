@@ -14,7 +14,6 @@ import (
 	"io/ioutil"
 	"net/http"
 
-	"github.com/davecgh/go-spew/spew"
 	"github.com/julienschmidt/httprouter"
 )
 
@@ -41,15 +40,15 @@ func LoginHandler(w http.ResponseWriter, r *http.Request, ps httprouter.Params) 
 	var user dbModels.User
 	err = db.Db.Where("user_name = ?", userInformation.UserName).First(&user).Error
 	if err != nil {
-		res.FinalizeError(w, err, http.StatusInternalServerError)
+		code := http.StatusInternalServerError
+		if err.Error() == "record not found" {
+			code = http.StatusNotFound
+			err = errors.New("Incorrect userName or password.")
+		}
+		res.FinalizeError(w, err, code)
 		return
 	}
-	spew.Dump(user)
-	if user.UserName == "" {
-		err = errors.New("Incorrect userName or password.")
-		res.FinalizeError(w, err, http.StatusUnauthorized)
-		return
-	}
+
 	isPasswordValid := security.ValidatePassword(
 		user.PasswordHash,
 		user.Salt,
