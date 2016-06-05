@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"go-auth/config"
 	"go-auth/core/auth/types"
+	"go-auth/database"
 	"go-auth/utilities/security"
 	"go-auth/utilities/test"
 	"net/http"
@@ -87,5 +88,32 @@ func TestLoginWithValidRegisteredUser(t *testing.T) {
 	jwtToken := res.Header.Get(configuration.Conf.JwtHeader)
 	if jwtToken == "" {
 		t.Errorf("JWT Token should be valid after login.")
+	}
+}
+
+func TestLoginWithDeletedUser(t *testing.T) {
+	// Deleted users should not be able to login
+	createdUser := testUtils.CreateUser()
+	db.Db.Delete(&createdUser.User)
+	body := authTypes.RegisterRequest{
+		UserName: createdUser.User.UserName,
+		Password: createdUser.Password,
+	}
+	js, jErr := json.Marshal(body)
+	if jErr != nil {
+		t.Error(jErr)
+	}
+	request, reqError := http.NewRequest("POST", loginURL, bytes.NewBuffer(js))
+	request.Header.Set("Content-Type", "application/json")
+	if reqError != nil {
+		t.Error(reqError)
+	}
+
+	res, resError := http.DefaultClient.Do(request)
+	if resError != nil {
+		t.Error(resError)
+	}
+	if res.StatusCode != 404 {
+		t.Errorf("Response should have been 404.")
 	}
 }
