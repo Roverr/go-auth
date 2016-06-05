@@ -31,6 +31,7 @@ func StartServer() ServerTest {
 	setLocalTestEnviroment()
 	if !db.IsConnected {
 		db.CreateDbConnection()
+		db.InitalizeModels()
 	}
 	router := routing.Init()
 	server := httptest.NewServer(router)
