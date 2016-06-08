@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"go-auth/config"
 	"go-auth/database/user"
+	"go-auth/utilities/logger"
 	"log"
 
 	// Lightweight MySQL driver import
@@ -32,7 +33,7 @@ func CreateDbConnection() *gorm.DB {
 
 	Db, err = gorm.Open("mysql", connString)
 	if err != nil {
-		fmt.Println("Error happened during opening connection with database")
+		logger.Standard.Critical("Error happened during opening connection with database")
 		log.Fatal(err)
 	}
 	IsConnected = true
