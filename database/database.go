@@ -6,10 +6,10 @@ import (
 
 	"github.com/Roverr/go-auth/config"
 	"github.com/Roverr/go-auth/database/user"
+	"github.com/Roverr/go-auth/utilities/logger"
 	// Lightweight MySQL driver import
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/jinzhu/gorm"
-	"github.com/roverr/go-auth/utilities/logger"
 )
 
 // Conn is the exported singleton database connection
