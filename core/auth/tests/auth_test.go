@@ -2,10 +2,11 @@ package auth_test
 
 import (
 	"fmt"
-	"go-auth/utilities/test"
 	"net/http/httptest"
 	"os"
 	"testing"
+
+	"github.com/Roverr/go-auth/utilities/test"
 )
 
 var (

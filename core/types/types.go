@@ -1,9 +1,9 @@
 package routingTypes
 
 import (
-	"go-auth/database/user"
 	"net/http"
 
+	"github.com/Roverr/go-auth/database/user"
 	"github.com/julienschmidt/httprouter"
 )
 

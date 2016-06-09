@@ -2,10 +2,11 @@ package db
 
 import (
 	"fmt"
-	"go-auth/config"
-	"go-auth/database/user"
 	"log"
 
+	"github.com/Roverr/go-auth/config"
+	"github.com/Roverr/go-auth/database/user"
+	"github.com/Roverr/go-auth/utilities/logger"
 	// Lightweight MySQL driver import
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/jinzhu/gorm"
@@ -29,9 +30,10 @@ func CreateDbConnection() *gorm.DB {
 		config.DbPort,
 		config.DbName,
 	)
+
 	Db, err = gorm.Open("mysql", connString)
 	if err != nil {
-		fmt.Println("Error happened during opening connection with database")
+		logger.Standard.Critical("Error happened during opening connection with database")
 		log.Fatal(err)
 	}
 	IsConnected = true

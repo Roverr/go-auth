@@ -3,13 +3,14 @@ package auth_test
 import (
 	"bytes"
 	"encoding/json"
-	"go-auth/config"
-	"go-auth/core/auth/types"
-	"go-auth/database"
-	"go-auth/utilities/security"
-	"go-auth/utilities/test"
 	"net/http"
 	"testing"
+
+	"github.com/Roverr/go-auth/config"
+	"github.com/Roverr/go-auth/core/auth/types"
+	"github.com/Roverr/go-auth/database"
+	"github.com/Roverr/go-auth/utilities/security"
+	"github.com/Roverr/go-auth/utilities/test"
 )
 
 // Login request without body should be invalid
