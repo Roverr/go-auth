@@ -1,13 +1,13 @@
 package user
 
 import (
-	"go-auth/utilities/logger"
 	"net/http"
 
 	"github.com/julienschmidt/httprouter"
 	"github.com/roverr/go-auth/config"
 	"github.com/roverr/go-auth/core/user/types"
 	"github.com/roverr/go-auth/database/user"
+	"github.com/roverr/go-auth/utilities/logger"
 	"github.com/roverr/go-auth/utilities/response"
 )
 
