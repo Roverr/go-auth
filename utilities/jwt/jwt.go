@@ -4,9 +4,9 @@ import (
 	"errors"
 	"time"
 
+	"github.com/Roverr/go-auth/config"
+	"github.com/Roverr/go-auth/core/auth/types"
 	"github.com/dgrijalva/jwt-go"
-	"github.com/roverr/go-auth/config"
-	"github.com/roverr/go-auth/core/auth/types"
 )
 
 // CreateToken can create valid JWT webtokens

@@ -6,7 +6,7 @@ import (
 	"os"
 	"testing"
 
-	"github.com/roverr/go-auth/utilities/test"
+	"github.com/Roverr/go-auth/utilities/test"
 )
 
 var (

@@ -1,6 +1,6 @@
 package testUtils
 
-import "github.com/roverr/go-auth/database/user"
+import "github.com/Roverr/go-auth/database/user"
 
 // CreatedUser is describing the structure
 // of the newly created random user which is

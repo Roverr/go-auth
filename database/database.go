@@ -4,11 +4,11 @@ import (
 	"fmt"
 	"log"
 
+	"github.com/Roverr/go-auth/config"
+	"github.com/Roverr/go-auth/database/user"
 	// Lightweight MySQL driver import
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/jinzhu/gorm"
-	"github.com/roverr/go-auth/config"
-	"github.com/roverr/go-auth/database/user"
 	"github.com/roverr/go-auth/utilities/logger"
 )
 

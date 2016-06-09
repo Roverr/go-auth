@@ -10,7 +10,7 @@ This project is like a TODO MVC for me in Golang, except it is just a basic auth
 ## Install project
 If you would like to install the project, you should have atleast Go 1.6 environment ready. After that you can install the project by typing:
 ```
-go get github.com/roverr/go-auth
+go get github.com/Roverr/go-auth
 ```
 
 You can test recursively by typing

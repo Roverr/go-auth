@@ -5,14 +5,14 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/Roverr/go-auth/config"
+	"github.com/Roverr/go-auth/core/auth/types"
+	"github.com/Roverr/go-auth/core/types"
+	"github.com/Roverr/go-auth/database"
+	"github.com/Roverr/go-auth/database/user"
+	"github.com/Roverr/go-auth/utilities/jwt"
+	"github.com/Roverr/go-auth/utilities/response"
 	"github.com/julienschmidt/httprouter"
-	"github.com/roverr/go-auth/config"
-	"github.com/roverr/go-auth/core/auth/types"
-	"github.com/roverr/go-auth/core/types"
-	"github.com/roverr/go-auth/database"
-	"github.com/roverr/go-auth/database/user"
-	"github.com/roverr/go-auth/utilities/jwt"
-	"github.com/roverr/go-auth/utilities/response"
 )
 
 // JwtCheck is a middleware used for checking the validation

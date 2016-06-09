@@ -3,7 +3,7 @@ package requestValidate
 import (
 	"errors"
 
-	"github.com/roverr/go-auth/core/auth/types"
+	"github.com/Roverr/go-auth/core/auth/types"
 )
 
 // UsernamePassword is function for validating request body

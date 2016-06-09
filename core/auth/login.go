@@ -6,16 +6,16 @@ import (
 	"io/ioutil"
 	"net/http"
 
+	"github.com/Roverr/go-auth/config"
+	"github.com/Roverr/go-auth/core/auth/types"
+	"github.com/Roverr/go-auth/database"
+	"github.com/Roverr/go-auth/database/user"
+	"github.com/Roverr/go-auth/utilities/jwt"
+	"github.com/Roverr/go-auth/utilities/logger"
+	"github.com/Roverr/go-auth/utilities/response"
+	"github.com/Roverr/go-auth/utilities/security"
+	"github.com/Roverr/go-auth/utilities/validate"
 	"github.com/julienschmidt/httprouter"
-	"github.com/roverr/go-auth/config"
-	"github.com/roverr/go-auth/core/auth/types"
-	"github.com/roverr/go-auth/database"
-	"github.com/roverr/go-auth/database/user"
-	"github.com/roverr/go-auth/utilities/jwt"
-	"github.com/roverr/go-auth/utilities/logger"
-	"github.com/roverr/go-auth/utilities/response"
-	"github.com/roverr/go-auth/utilities/security"
-	"github.com/roverr/go-auth/utilities/validate"
 )
 
 func logSuccessLogin(user dbModels.User) {

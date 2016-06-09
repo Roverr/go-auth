@@ -3,12 +3,12 @@ package user
 import (
 	"net/http"
 
+	"github.com/Roverr/go-auth/config"
+	"github.com/Roverr/go-auth/core/user/types"
+	"github.com/Roverr/go-auth/database/user"
+	"github.com/Roverr/go-auth/utilities/logger"
+	"github.com/Roverr/go-auth/utilities/response"
 	"github.com/julienschmidt/httprouter"
-	"github.com/roverr/go-auth/config"
-	"github.com/roverr/go-auth/core/user/types"
-	"github.com/roverr/go-auth/database/user"
-	"github.com/roverr/go-auth/utilities/logger"
-	"github.com/roverr/go-auth/utilities/response"
 )
 
 func logMe(user dbModels.User) {

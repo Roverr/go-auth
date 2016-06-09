@@ -8,14 +8,14 @@ import (
 	"net/http"
 	"strings"
 
+	"github.com/Roverr/go-auth/core/auth/types"
+	"github.com/Roverr/go-auth/database"
+	"github.com/Roverr/go-auth/database/user"
+	"github.com/Roverr/go-auth/utilities/logger"
+	"github.com/Roverr/go-auth/utilities/response"
+	"github.com/Roverr/go-auth/utilities/security"
+	"github.com/Roverr/go-auth/utilities/validate"
 	"github.com/julienschmidt/httprouter"
-	"github.com/roverr/go-auth/core/auth/types"
-	"github.com/roverr/go-auth/database"
-	"github.com/roverr/go-auth/database/user"
-	"github.com/roverr/go-auth/utilities/logger"
-	"github.com/roverr/go-auth/utilities/response"
-	"github.com/roverr/go-auth/utilities/security"
-	"github.com/roverr/go-auth/utilities/validate"
 )
 
 func logSuccessRegister(user dbModels.User) {

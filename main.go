@@ -5,10 +5,10 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/roverr/go-auth/config"
-	"github.com/roverr/go-auth/core"
-	"github.com/roverr/go-auth/database"
-	"github.com/roverr/go-auth/utilities/logger"
+	"github.com/Roverr/go-auth/config"
+	"github.com/Roverr/go-auth/core"
+	"github.com/Roverr/go-auth/database"
+	"github.com/Roverr/go-auth/utilities/logger"
 )
 
 func main() {

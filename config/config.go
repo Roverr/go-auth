@@ -4,8 +4,8 @@ import (
 	"log"
 	"os"
 
+	"github.com/Roverr/go-auth/utilities/logger"
 	"github.com/kelseyhightower/envconfig"
-	"github.com/roverr/go-auth/utilities/logger"
 )
 
 // Config is the structure of the
