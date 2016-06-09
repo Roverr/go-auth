@@ -2,14 +2,14 @@ package db
 
 import (
 	"fmt"
-	"go-auth/config"
-	"go-auth/database/user"
-	"go-auth/utilities/logger"
 	"log"
 
 	// Lightweight MySQL driver import
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/jinzhu/gorm"
+	"github.com/roverr/go-auth/config"
+	"github.com/roverr/go-auth/database/user"
+	"github.com/roverr/go-auth/utilities/logger"
 )
 
 // Conn is the exported singleton database connection

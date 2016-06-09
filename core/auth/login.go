@@ -3,19 +3,19 @@ package auth
 import (
 	"encoding/json"
 	"errors"
-	"go-auth/config"
-	"go-auth/core/auth/types"
-	"go-auth/database"
-	"go-auth/database/user"
-	"go-auth/utilities/jwt"
-	"go-auth/utilities/logger"
-	"go-auth/utilities/response"
-	"go-auth/utilities/security"
-	"go-auth/utilities/validate"
 	"io/ioutil"
 	"net/http"
 
 	"github.com/julienschmidt/httprouter"
+	"github.com/roverr/go-auth/config"
+	"github.com/roverr/go-auth/core/auth/types"
+	"github.com/roverr/go-auth/database"
+	"github.com/roverr/go-auth/database/user"
+	"github.com/roverr/go-auth/utilities/jwt"
+	"github.com/roverr/go-auth/utilities/logger"
+	"github.com/roverr/go-auth/utilities/response"
+	"github.com/roverr/go-auth/utilities/security"
+	"github.com/roverr/go-auth/utilities/validate"
 )
 
 func logSuccessLogin(user dbModels.User) {

@@ -2,12 +2,13 @@ package main
 
 import (
 	"fmt"
-	"go-auth/config"
-	"go-auth/core"
-	"go-auth/database"
-	"go-auth/utilities/logger"
 	"log"
 	"net/http"
+
+	"github.com/roverr/go-auth/config"
+	"github.com/roverr/go-auth/core"
+	"github.com/roverr/go-auth/database"
+	"github.com/roverr/go-auth/utilities/logger"
 )
 
 func main() {

@@ -1,10 +1,10 @@
 package routingTypes
 
 import (
-	"go-auth/database/user"
 	"net/http"
 
 	"github.com/julienschmidt/httprouter"
+	"github.com/roverr/go-auth/database/user"
 )
 
 // HandleWithAuth is a handler which is almost the same the httprouter.Handle

@@ -2,11 +2,11 @@ package jwtUtils
 
 import (
 	"errors"
-	"go-auth/config"
-	"go-auth/core/auth/types"
 	"time"
 
 	"github.com/dgrijalva/jwt-go"
+	"github.com/roverr/go-auth/config"
+	"github.com/roverr/go-auth/core/auth/types"
 )
 
 // CreateToken can create valid JWT webtokens

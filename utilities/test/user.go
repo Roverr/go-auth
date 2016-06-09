@@ -1,10 +1,10 @@
 package testUtils
 
 import (
-	"go-auth/database"
-	"go-auth/database/user"
-	"go-auth/utilities/jwt"
-	"go-auth/utilities/security"
+	"github.com/roverr/go-auth/database"
+	"github.com/roverr/go-auth/database/user"
+	"github.com/roverr/go-auth/utilities/jwt"
+	"github.com/roverr/go-auth/utilities/security"
 )
 
 // CreateUser is a function for creating a random

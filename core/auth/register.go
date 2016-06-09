@@ -4,18 +4,18 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"go-auth/core/auth/types"
-	"go-auth/database"
-	"go-auth/database/user"
-	"go-auth/utilities/logger"
-	"go-auth/utilities/response"
-	"go-auth/utilities/security"
-	"go-auth/utilities/validate"
 	"io/ioutil"
 	"net/http"
 	"strings"
 
 	"github.com/julienschmidt/httprouter"
+	"github.com/roverr/go-auth/core/auth/types"
+	"github.com/roverr/go-auth/database"
+	"github.com/roverr/go-auth/database/user"
+	"github.com/roverr/go-auth/utilities/logger"
+	"github.com/roverr/go-auth/utilities/response"
+	"github.com/roverr/go-auth/utilities/security"
+	"github.com/roverr/go-auth/utilities/validate"
 )
 
 func logSuccessRegister(user dbModels.User) {
@@ -66,7 +66,7 @@ func RegisterHandler(w http.ResponseWriter, r *http.Request, ps httprouter.Param
 		res.FinalizeError(w, pwErr, http.StatusInternalServerError)
 		return
 	}
-	var user = dbModels.User{
+	user := dbModels.User{
 		RealName:     userInformation.RealName,
 		UserName:     userInformation.UserName,
 		Salt:         passwordHash.Salt,

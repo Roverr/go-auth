@@ -3,12 +3,13 @@ package auth_test
 import (
 	"bytes"
 	"encoding/json"
-	"go-auth/core/auth/types"
-	"go-auth/database"
-	"go-auth/database/user"
-	"go-auth/utilities/security"
 	"net/http"
 	"testing"
+
+	"github.com/roverr/go-auth/core/auth/types"
+	"github.com/roverr/go-auth/database"
+	"github.com/roverr/go-auth/database/user"
+	"github.com/roverr/go-auth/utilities/security"
 )
 
 // Should not be able to complete registration without request body

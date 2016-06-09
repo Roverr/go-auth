@@ -1,10 +1,9 @@
 package routing
 
 import (
-	"go-auth/core/auth"
-	"go-auth/core/user"
-
 	"github.com/julienschmidt/httprouter"
+	"github.com/roverr/go-auth/core/auth"
+	"github.com/roverr/go-auth/core/user"
 )
 
 // Init router

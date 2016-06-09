@@ -1,10 +1,11 @@
 package testUtils
 
 import (
-	"go-auth/config"
-	"go-auth/core"
-	"go-auth/database"
 	"net/http/httptest"
+
+	"github.com/roverr/go-auth/config"
+	"github.com/roverr/go-auth/core"
+	"github.com/roverr/go-auth/database"
 )
 
 // ServerTest struct is used to describe

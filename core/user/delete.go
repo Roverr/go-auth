@@ -1,13 +1,13 @@
 package user
 
 import (
-	"go-auth/database"
-	"go-auth/database/user"
-	"go-auth/utilities/logger"
-	"go-auth/utilities/response"
 	"net/http"
 
 	"github.com/julienschmidt/httprouter"
+	"github.com/roverr/go-auth/database"
+	"github.com/roverr/go-auth/database/user"
+	"github.com/roverr/go-auth/utilities/logger"
+	"github.com/roverr/go-auth/utilities/response"
 )
 
 func logDelete(user dbModels.User) {
