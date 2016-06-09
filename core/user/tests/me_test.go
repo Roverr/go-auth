@@ -2,13 +2,14 @@ package user_test
 
 import (
 	"encoding/json"
-	"go-auth/config"
-	"go-auth/core/user/types"
-	"go-auth/database"
-	"go-auth/utilities/test"
 	"io/ioutil"
 	"net/http"
 	"testing"
+
+	"github.com/Roverr/go-auth/config"
+	"github.com/Roverr/go-auth/core/user/types"
+	"github.com/Roverr/go-auth/database"
+	"github.com/Roverr/go-auth/utilities/test"
 )
 
 // This endpoint should be unreachable without login

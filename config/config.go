@@ -1,10 +1,10 @@
 package configuration
 
 import (
-	"fmt"
 	"log"
 	"os"
 
+	"github.com/Roverr/go-auth/utilities/logger"
 	"github.com/kelseyhightower/envconfig"
 )
 
@@ -44,7 +44,7 @@ func InitConfig() Config {
 	InitDotenv()
 	err := envconfig.Process("goauth", &Conf)
 	if err != nil {
-		fmt.Println("Error happened while loading enviroment variables for config!")
+		logger.Standard.Critical("Error happened while loading enviroment variables for config!")
 		log.Fatal(err)
 	}
 	if Conf.IsCodeShip {

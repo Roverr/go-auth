@@ -1,12 +1,13 @@
 package user_test
 
 import (
-	"go-auth/config"
-	"go-auth/database"
-	"go-auth/database/user"
-	"go-auth/utilities/test"
 	"net/http"
 	"testing"
+
+	"github.com/Roverr/go-auth/config"
+	"github.com/Roverr/go-auth/database"
+	"github.com/Roverr/go-auth/database/user"
+	"github.com/Roverr/go-auth/utilities/test"
 )
 
 // Should not be able to call this endpoint without login

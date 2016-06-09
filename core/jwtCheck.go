@@ -2,16 +2,16 @@ package routing
 
 import (
 	"errors"
-	"go-auth/config"
-	"go-auth/core/auth/types"
-	"go-auth/core/types"
-	"go-auth/database"
-	"go-auth/database/user"
-	"go-auth/utilities/jwt"
-	"go-auth/utilities/response"
 	"net/http"
 	"time"
 
+	"github.com/Roverr/go-auth/config"
+	"github.com/Roverr/go-auth/core/auth/types"
+	"github.com/Roverr/go-auth/core/types"
+	"github.com/Roverr/go-auth/database"
+	"github.com/Roverr/go-auth/database/user"
+	"github.com/Roverr/go-auth/utilities/jwt"
+	"github.com/Roverr/go-auth/utilities/response"
 	"github.com/julienschmidt/httprouter"
 )
 
