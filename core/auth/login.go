@@ -18,7 +18,7 @@ import (
 	"github.com/julienschmidt/httprouter"
 )
 
-func logSuccesLogin(user dbModels.User) {
+func logSuccessLogin(user dbModels.User) {
 	data := logger.APIPrivateLog{
 		Status:   http.StatusOK,
 		Endpoint: "/auth/login",
@@ -96,6 +96,6 @@ func LoginHandler(w http.ResponseWriter, r *http.Request, ps httprouter.Params) 
 		return
 	}
 	w.Header().Set(configuration.Conf.JwtHeader, tokenString)
-	logSuccesLogin(user)
+	logSuccessLogin(user)
 	res.Finalize(w, nil)
 }
