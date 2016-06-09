@@ -7,8 +7,11 @@ This project is like a TODO MVC for me in Golang, except it is just a basic auth
 
 ### Attention! This project might contain anti-pattern implementations!
 
-## Project structure
-This project has kinda it's own structure, since the dependencies in the files are referring to go-auth, and not like github.com/Roverr/go-auth.
+## Install project
+If you would like to install the project, you should have atleast Go 1.6 environment ready. After that you can install the project by typing:
+```
+go get github.com/roverr/go-auth
+```
 
 You can test recursively by typing
 ```
